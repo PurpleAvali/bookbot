@@ -3,7 +3,7 @@ Module:
     This is the main module and the entrypoint of the program
 """
 from stats import count_words_in_string
-
+from stats import count_chars_in_string
 def get_book_text(filepath: str) -> str:
     """Reads the entire contents of a text file and returns it as a string.
     
@@ -33,7 +33,7 @@ def main():
     counts the words in it, and prints the result to stdout.
     """
     text = get_book_text("books/frankenstein.txt")
-    print(count_words_in_string(text))
+    print(count_chars_in_string(text))
 
 if __name__ == "__main__":
     main()

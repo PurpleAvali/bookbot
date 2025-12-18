@@ -17,3 +17,10 @@ def count_words_in_string(string: str) -> str:
         if item != "":
             num_words += 1
     return f"Found {num_words} total words"
+
+
+def count_chars_in_string(string :str) -> dict[str, int]:
+    counts = {"": 0}
+    for char in string.lower():
+        counts[char] = counts.get(char, 0) + 1
+    return counts
