@@ -20,4 +20,4 @@ def ordered_list_of_dicts(freq: dict) -> list:
 def print_pretty_dict(list: list[dict]):
     for i in list:
         if i["char"] != "\n":
-            print(f"{i["char"]} : {i["num"]}")
+            print(f"{i["char"]}: {i["num"]}")
