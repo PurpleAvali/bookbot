@@ -4,36 +4,33 @@ Module:
 """
 from stats import count_words_in_string
 from stats import count_chars_in_string
+from stats import ordered_list_of_dicts
+from stats import print_pretty_dict
+
 def get_book_text(filepath: str) -> str:
-    """Reads the entire contents of a text file and returns it as a string.
     
-    Args:
-        filepath (str): The path to the text file to be read (e.g., "books/frankenstein.txt").
-    
-    Returns:
-        str: The full contents of the file as a single string if successful.
-             If the file is not found, returns an error message string.
-    
-    Raises:
-        Prints a FileNotFoundError message to stdout if the file cannot be opened.
-    """
     try:
         with open(filepath, "r", encoding="UTF-8") as f:
             contents = f.read()
         return contents
     except FileNotFoundError as e:
         print(e)
-    return "Error: Either the file was not found, or you entered the wrong filepath?"
+        return "Error: Either the file was not found, or you entered the wrong filepath?"
+
 
 
 def main():
-    """Main entry point of the script.
-    
-    Loads the text of "Frankenstein" from the predefined file path,
-    counts the words in it, and prints the result to stdout.
-    """
-    text = get_book_text("books/frankenstein.txt")
-    print(count_chars_in_string(text))
+    filepath = "books/frankenstein.txt"
+    book_contents = get_book_text(filepath=filepath)
+    num_words = count_words_in_string(book_contents)
+    num_chars = count_chars_in_string(book_contents)
+    char_list = ordered_list_of_dicts(num_chars)
+    print("============ BOOKBOT ============")
+    print(f"Analyzing book found at {filepath}...")
+    print("----------- Word Count ----------")
+    print(f"Found {num_words} total words")
+    print("--------- Character Count -------")
+    print_pretty_dict(char_list)
 
 if __name__ == "__main__":
     main()

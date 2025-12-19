@@ -1,26 +1,23 @@
-def count_words_in_string(string: str) -> str:
-    """Counts the number of words in the provided string.
-    
-    Words are separated by whitespace. Empty strings or multiple consecutive
-    whitespace characters are handled gracefully (they do not add to the count).
-    
-    Args:
-        string (str): The input text whose words will be counted.
-    
-    Returns:
-        str: A formatted string indicating the total number of words found,
-             e.g., "Found 12345 total words".
-    """
-    splits = string.split()
-    num_words = 0
-    for item in splits:
-        if item != "":
-            num_words += 1
-    return f"Found {num_words} total words"
 
+def count_words_in_string(content: str) -> int:
+    return len(content.split())
+   
+def count_chars_in_string(content :str) -> dict[str, int]:
+    count = {"": 0}
+    for c in content.lower():
+        count[c] = count.get(c, 0) + 1
+    return count
 
-def count_chars_in_string(string :str) -> dict[str, int]:
-    counts = {"": 0}
-    for char in string.lower():
-        counts[char] = counts.get(char, 0) + 1
-    return counts
+def ordered_list_of_dicts(freq: dict) -> list:
+    if '' in freq:
+        freq[' '] = freq.pop('')
+
+    list_dicts = [{"char": char, "num": count} for char, count in freq.items()]
+    list_dicts = sorted(list_dicts, key=lambda x: x["num"], reverse=True)
+    
+    return list_dicts
+
+def print_pretty_dict(list: list[dict]):
+    for i in list:
+        if i["char"] != "\n":
+            print(f"{i["char"]} : {i["num"]}")
